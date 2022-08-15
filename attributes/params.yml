@@ -1,0 +1,297 @@
+---
+info:
+  title: hl7800_attributes
+attributes:
+  - name: lte_imei
+    summary: "IMEI"
+    required: true
+    schema:
+      maxLength: 15
+      type: string
+    x-ctype: string
+    x-broadcast: false
+    x-default: ""
+    x-lockable: false
+    x-prepare: false
+    x-readable: true
+    x-savable: false
+    x-writable: false
+  - name: lte_iccid
+    summary: "SIM ICCID"
+    required: true
+    schema:
+      maxLength: 20
+      type: string
+    x-ctype: string
+    x-broadcast: false
+    x-default: ""
+    x-lockable: false
+    x-prepare: false
+    x-readable: true
+    x-savable: false
+    x-writable: false
+  - name: lte_imsi
+    summary: "International Mobile Subscriber Identity"
+    required: true
+    schema:
+      minLength: 14
+      maxLength: 15
+      type: string
+    x-ctype: string
+    x-broadcast: false
+    x-default: ""
+    x-lockable: false
+    x-prepare: false
+    x-readable: true
+    x-savable: false
+    x-writable: false
+  - name: lte_sn
+    summary: "LTE serial number"
+    required: true
+    schema:
+      maxLength: 14
+      type: string
+    x-ctype: string
+    x-broadcast: false
+    x-default: ""
+    x-lockable: false
+    x-prepare: false
+    x-readable: true
+    x-savable: false
+    x-writable: false
+  - name: lte_version
+    summary: "Firmware version of the LTE modem"
+    required: true
+    schema:
+      maxLength: 29
+      type: string
+    x-ctype: string
+    x-broadcast: true
+    x-default: ""
+    x-lockable: false
+    x-prepare: false
+    x-readable: true
+    x-savable: false
+    x-writable: false
+  - name: lte_network_state
+    summary: "Network state"
+    required: true
+    schema:
+      type: integer
+      enum:
+        NOT_REGISTERED: 0
+        HOME_NETWORK: 1
+        SEARCHING: 2
+        REGISTRATION_DENIED: 3
+        OUT_OF_COVERAGE: 4
+        ROAMING: 5
+        EMERGENCY: 8
+        UNABLE_TO_CONFIGURE: 240
+    x-ctype: uint8_t
+    x-broadcast: true
+    x-default: 0
+    x-lockable: false
+    x-prepare: false
+    x-readable: true
+    x-savable: false
+    x-writable: false
+  - name: lte_startup_state
+    summary: "Modem startup state"
+    required: true
+    schema:
+      type: integer
+      enum:
+        READY: 0
+        WAITING_FOR_ACCESS_CODE: 1
+        SIM_NOT_PRESENT: 2
+        SIM_LOCK: 3
+        UNRECOVERABLE_ERROR: 4
+        UNKNOWN: 5
+        INACTIVE_SIM: 6
+    x-ctype: uint8_t
+    x-broadcast: true
+    x-default: 0
+    x-lockable: false
+    x-prepare: false
+    x-readable: true
+    x-savable: false
+    x-writable: false
+  - name: lte_init_error
+    summary: "Initialization status of LTE driver"
+    required: true
+    schema:
+      type: integer
+      enum:
+        NONE: 0
+        NO_IFACE: -1
+        IFACE_CFG: -2
+        DNS_CFG: -3
+        MODEM: -4
+        AIRPLANE: -5
+    x-ctype: int8_t
+    x-broadcast: true
+    x-default: 0
+    x-lockable: false
+    x-prepare: false
+    x-readable: true
+    x-savable: false
+    x-writable: false
+  - name: lte_apn
+    summary: "The LTE network access point name"
+    required: true
+    schema:
+      maxLength: 64
+      type: string
+    x-ctype: string
+    x-broadcast: true
+    x-default: ""
+    x-lockable: false
+    x-prepare: false
+    x-readable: true
+    x-savable: false
+    x-writable: true
+  - name: lte_rsrp
+    summary: "Reference Signals Receive Power (RSRP) in dBm"
+    required: true
+    schema:
+      type: integer
+    x-ctype: int16_t
+    x-broadcast: true
+    x-default: 0
+    x-lockable: false
+    x-prepare: false
+    x-readable: true
+    x-savable: false
+    x-writable: false
+  - name: lte_sinr
+    summary: "Signal to Interference plus Noise Ratio (SINR) in dBm"
+    required: true
+    schema:
+      type: integer
+    x-ctype: int16_t
+    x-broadcast: true
+    x-default: 0
+    x-lockable: false
+    x-prepare: false
+    x-readable: true
+    x-savable: false
+    x-writable: false
+  - name: lte_bands
+    summary: "Radio bands enabled in the LTE modem"
+    required: true
+    schema:
+      minLength: 1
+      maxLength: 20
+      type: string
+    x-ctype: string
+    x-broadcast: true
+    x-default: ""
+    x-lockable: false
+    x-prepare: false
+    x-readable: true
+    x-savable: false
+    x-writable: true
+  - name: lte_active_bands
+    summary: "Radio bands in use by the LTE modem"
+    required: true
+    schema:
+      maxLength: 20
+      type: string
+    x-ctype: string
+    x-broadcast: true
+    x-default: ""
+    x-lockable: false
+    x-prepare: false
+    x-readable: true
+    x-savable: false
+    x-writable: false
+  - name: lte_operator_index
+    summary: "Operator index"
+    required: true
+    schema:
+      type: integer
+    x-ctype: uint8_t
+    x-broadcast: true
+    x-default: 255
+    x-lockable: false
+    x-prepare: false
+    x-readable: true
+    x-savable: false
+    x-writable: false
+  - name: lte_sleep_state
+    summary: "Sleep state of the driver"
+    required: true
+    schema:
+      type: integer
+      enum:
+        UNINITIALIZED: 0
+        HIBERNATE: 1
+        AWAKE: 2
+        LITE_HIBERNATE: 3
+        SLEEP: 4
+    x-ctype: uint8_t
+    x-broadcast: true
+    x-default: 0
+    x-lockable: false
+    x-prepare: false
+    x-readable: true
+    x-savable: false
+    x-writable: false
+  - name: lte_rat
+    summary: "Radio Access Technology"
+    required: true
+    schema:
+      type: integer
+      enum:
+        CAT_M1: 0
+        CAT_NB1: 1
+    x-ctype: uint8_t
+    x-broadcast: true
+    x-default: 0
+    x-lockable: false
+    x-prepare: false
+    x-readable: true
+    x-savable: false
+    x-writable: true
+  - name: lte_log_lvl
+    summary: "HL7800 driver log level"
+    required: true
+    schema:
+      type: integer
+      enum:
+        NONE: 0
+        ERROR: 1
+        WARNING: 2
+        INFO: 3
+        DEBUG: 4
+    x-ctype: uint8_t
+    x-broadcast: true
+    x-default: 2
+    x-lockable: false
+    x-prepare: false
+    x-readable: true
+    x-savable: true
+    x-writable: true
+  - name: lte_fup_status
+    summary: "HL7800 firmware update status"
+    required: true
+    schema:
+      type: integer
+      enum:
+        IDLE: 0
+        START: 1
+        WIP: 2
+        PAD: 3
+        SEND_EOT: 4
+        FILE_ERR: 5
+        INSTALL: 6
+        REBOOT_RECONFIG: 7
+        COMPLETE: 8
+    x-ctype: uint8_t
+    x-broadcast: true
+    x-default: 0
+    x-lockable: false
+    x-prepare: false
+    x-readable: true
+    x-savable: false
+    x-writable: false
