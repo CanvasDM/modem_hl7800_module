@@ -164,7 +164,7 @@ attributes:
     x-savable: false
     x-writable: false
   - name: lte_sinr
-    summary: "Signal to Interference plus Noise Ratio (SINR) in dBm"
+    summary: "Signal to Interference plus Noise Ratio (SINR) in dB"
     required: true
     schema:
       type: integer
