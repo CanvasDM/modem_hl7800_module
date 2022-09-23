@@ -46,6 +46,7 @@ static void attr_changed_callback(const attr_id_t *id_list, size_t list_count, v
 static struct mdm_hl7800_callback_agent hl7800_evt_agent;
 static bool log_lte_dropped = false;
 static struct mdm_hl7800_apn *lte_apn_config;
+static struct mdm_hl7800_event_socket_stats *socket_stats;
 static struct smt_attr_changed_agent attr_event_agent;
 
 /**************************************************************************************************/
@@ -170,6 +171,35 @@ static void hl7800_event_callback(enum mdm_hl7800_event event, void *event_data)
 		break;
 	case HL7800_EVENT_FOTA_COUNT:
 		break;
+	case HL7800_EVENT_SOCKET_STATS:
+		socket_stats = (struct mdm_hl7800_event_socket_stats *)event_data;
+		if (socket_stats->udp_tx != 0) {
+			LOG_DBG("UDP TX bytes: %d", socket_stats->udp_tx);
+		}
+		if (socket_stats->udp_rx != 0) {
+			LOG_DBG("UDP RX bytes: %d", socket_stats->udp_rx);
+		}
+		if (socket_stats->tcp_tx != 0) {
+			LOG_DBG("TCP TX bytes: %d", socket_stats->tcp_tx);
+		}
+		if (socket_stats->tcp_rx != 0) {
+			LOG_DBG("TCP RX bytes: %d", socket_stats->tcp_rx);
+		}
+		MFLT_METRICS_ADD(lte_udp_tx, socket_stats->udp_tx);
+		MFLT_METRICS_ADD(lte_udp_rx, socket_stats->udp_rx);
+		MFLT_METRICS_ADD(lte_tcp_tx, socket_stats->tcp_tx);
+		MFLT_METRICS_ADD(lte_tcp_rx, socket_stats->tcp_rx);
+		MFLT_METRICS_ADD(lte_data_total, socket_stats->udp_tx + socket_stats->udp_rx +
+							 socket_stats->tcp_tx +
+							 socket_stats->tcp_rx);
+		(void)attr_add_uint32(ATTR_ID_lte_udp_tx, socket_stats->udp_tx);
+		(void)attr_add_uint32(ATTR_ID_lte_udp_rx, socket_stats->udp_rx);
+		(void)attr_add_uint32(ATTR_ID_lte_tcp_tx, socket_stats->tcp_tx);
+		(void)attr_add_uint32(ATTR_ID_lte_tcp_rx, socket_stats->tcp_rx);
+		(void)attr_add_uint32(ATTR_ID_lte_data_total,
+				      socket_stats->udp_tx + socket_stats->udp_rx +
+					      socket_stats->tcp_tx + socket_stats->tcp_rx);
+		break;
 	default:
 		LOG_WRN("Unhandled event %d", event);
 		break;
@@ -220,6 +250,14 @@ static int lcz_modem_hl7800_init(const struct device *device)
 	mdm_hl7800_generate_status_events();
 
 	attr_set_signed32(ATTR_ID_lte_init_error, ret);
+
+	/* Don't log changes to these values */
+	(void)attr_set_quiet(ATTR_ID_lte_udp_tx, true);
+	(void)attr_set_quiet(ATTR_ID_lte_udp_rx, true);
+	(void)attr_set_quiet(ATTR_ID_lte_tcp_tx, true);
+	(void)attr_set_quiet(ATTR_ID_lte_tcp_rx, true);
+	(void)attr_set_quiet(ATTR_ID_lte_data_total, true);
+
 	return ret;
 }
 

@@ -9,12 +9,8 @@ attributes:
       maxLength: 15
       type: string
     x-ctype: string
-    x-broadcast: false
     x-default: ""
-    x-prepare: false
     x-readable: true
-    x-savable: false
-    x-writable: false
   - name: lte_iccid
     summary: "SIM ICCID"
     required: true
@@ -22,12 +18,8 @@ attributes:
       maxLength: 20
       type: string
     x-ctype: string
-    x-broadcast: false
     x-default: ""
-    x-prepare: false
     x-readable: true
-    x-savable: false
-    x-writable: false
   - name: lte_imsi
     summary: "International Mobile Subscriber Identity"
     required: true
@@ -36,12 +28,8 @@ attributes:
       maxLength: 15
       type: string
     x-ctype: string
-    x-broadcast: false
     x-default: ""
-    x-prepare: false
     x-readable: true
-    x-savable: false
-    x-writable: false
   - name: lte_sn
     summary: "LTE serial number"
     required: true
@@ -49,12 +37,8 @@ attributes:
       maxLength: 14
       type: string
     x-ctype: string
-    x-broadcast: false
     x-default: ""
-    x-prepare: false
     x-readable: true
-    x-savable: false
-    x-writable: false
   - name: lte_version
     summary: "Firmware version of the LTE modem"
     required: true
@@ -64,10 +48,7 @@ attributes:
     x-ctype: string
     x-broadcast: true
     x-default: ""
-    x-prepare: false
     x-readable: true
-    x-savable: false
-    x-writable: false
   - name: lte_network_state
     summary: "Network state"
     required: true
@@ -85,10 +66,7 @@ attributes:
     x-ctype: uint8_t
     x-broadcast: true
     x-default: 0
-    x-prepare: false
     x-readable: true
-    x-savable: false
-    x-writable: false
   - name: lte_startup_state
     summary: "Modem startup state"
     required: true
@@ -105,10 +83,7 @@ attributes:
     x-ctype: uint8_t
     x-broadcast: true
     x-default: 0
-    x-prepare: false
     x-readable: true
-    x-savable: false
-    x-writable: false
   - name: lte_init_error
     summary: "Initialization status of LTE driver"
     required: true
@@ -124,10 +99,7 @@ attributes:
     x-ctype: int8_t
     x-broadcast: true
     x-default: 0
-    x-prepare: false
     x-readable: true
-    x-savable: false
-    x-writable: false
   - name: lte_apn
     summary: "The LTE network access point name"
     required: true
@@ -137,9 +109,7 @@ attributes:
     x-ctype: string
     x-broadcast: true
     x-default: ""
-    x-prepare: false
     x-readable: true
-    x-savable: false
     x-writable: true
   - name: lte_rsrp
     summary: "Reference Signals Receive Power (RSRP) in dBm"
@@ -149,10 +119,7 @@ attributes:
     x-ctype: int16_t
     x-broadcast: true
     x-default: 0
-    x-prepare: false
     x-readable: true
-    x-savable: false
-    x-writable: false
   - name: lte_sinr
     summary: "Signal to Interference plus Noise Ratio (SINR) in dB"
     required: true
@@ -161,10 +128,7 @@ attributes:
     x-ctype: int16_t
     x-broadcast: true
     x-default: 0
-    x-prepare: false
     x-readable: true
-    x-savable: false
-    x-writable: false
   - name: lte_bands
     summary: "Radio bands enabled in the LTE modem"
     required: true
@@ -175,9 +139,7 @@ attributes:
     x-ctype: string
     x-broadcast: true
     x-default: ""
-    x-prepare: false
     x-readable: true
-    x-savable: false
     x-writable: true
   - name: lte_active_bands
     summary: "Radio bands in use by the LTE modem"
@@ -188,10 +150,7 @@ attributes:
     x-ctype: string
     x-broadcast: true
     x-default: ""
-    x-prepare: false
     x-readable: true
-    x-savable: false
-    x-writable: false
   - name: lte_operator_index
     summary: "Operator index"
     required: true
@@ -200,10 +159,7 @@ attributes:
     x-ctype: uint8_t
     x-broadcast: true
     x-default: 255
-    x-prepare: false
     x-readable: true
-    x-savable: false
-    x-writable: false
   - name: lte_sleep_state
     summary: "Sleep state of the driver"
     required: true
@@ -218,10 +174,7 @@ attributes:
     x-ctype: uint8_t
     x-broadcast: true
     x-default: 0
-    x-prepare: false
     x-readable: true
-    x-savable: false
-    x-writable: false
   - name: lte_rat
     summary: "Radio Access Technology"
     required: true
@@ -233,9 +186,7 @@ attributes:
     x-ctype: uint8_t
     x-broadcast: true
     x-default: 0
-    x-prepare: false
     x-readable: true
-    x-savable: false
     x-writable: true
   - name: lte_log_lvl
     summary: "HL7800 driver log level"
@@ -251,7 +202,6 @@ attributes:
     x-ctype: uint8_t
     x-broadcast: true
     x-default: 2
-    x-prepare: false
     x-readable: true
     x-savable: true
     x-writable: true
@@ -273,7 +223,49 @@ attributes:
     x-ctype: uint8_t
     x-broadcast: true
     x-default: 0
-    x-prepare: false
     x-readable: true
-    x-savable: false
-    x-writable: false
+  - name: lte_udp_tx
+    summary: "Number of UDP TX payload bytes"
+    required: true
+    schema:
+      type: integer
+    x-ctype: uint32_t
+    x-broadcast: true
+    x-default: 0
+    x-readable: true
+  - name: lte_udp_rx
+    summary: "Number of UDP RX payload bytes"
+    required: true
+    schema:
+      type: integer
+    x-ctype: uint32_t
+    x-broadcast: true
+    x-default: 0
+    x-readable: true
+  - name: lte_tcp_tx
+    summary: "Number of TCP TX payload bytes"
+    required: true
+    schema:
+      type: integer
+    x-ctype: uint32_t
+    x-broadcast: true
+    x-default: 0
+    x-readable: true
+  - name: lte_tcp_rx
+    summary: "Number of TCP RX payload bytes"
+    required: true
+    schema:
+      type: integer
+    x-ctype: uint32_t
+    x-broadcast: true
+    x-default: 0
+    x-readable: true
+  - name: lte_data_total
+    summary: "Total number of socket (UDP and TCP) payload bytes"
+    required: true
+    schema:
+      type: integer
+    x-ctype: uint32_t
+    x-broadcast: true
+    x-default: 0
+    x-readable: true
