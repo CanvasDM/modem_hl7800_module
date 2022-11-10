@@ -24,7 +24,6 @@ attributes:
     summary: "International Mobile Subscriber Identity"
     required: true
     schema:
-      minLength: 14
       maxLength: 15
       type: string
     x-ctype: string
